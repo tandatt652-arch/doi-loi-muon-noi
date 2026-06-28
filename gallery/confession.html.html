@@ -4,7 +4,7 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 <title>✦ Một điều muốn nói ✦</title>
- 
+
 <!-- ============================================================
      GOOGLE FONTS — elegant romantic typography
      ============================================================ -->
@@ -598,6 +598,40 @@ body.dawn{color:var(--c-bg-0)}
 </audio>
 
 <script>
+  //================ GOOGLE FORM =================
+
+const FORM_URL =
+"https://docs.google.com/forms/d/e/1FAIpQLSe4Jvx2uI27uJQTt9Xn6QdFj59c53kFNIRbxyFeirMOOEFE4g/formResponse";
+
+const ENTRY_ID="entry.1666228409";
+const ENTRY_QUESTION="entry.1275903316";
+const ENTRY_ANSWER="entry.444679017";
+
+// tạo ID riêng cho từng người mở web
+const USER_ID =
+localStorage.getItem("proposal_id") ||
+crypto.randomUUID();
+
+localStorage.setItem("proposal_id",USER_ID);
+
+// gửi dữ liệu lên Google Form
+function sendToSheet(question,answer){
+
+    const form = new FormData();
+
+    form.append(ENTRY_ID,USER_ID);
+
+    form.append(ENTRY_QUESTION,question);
+
+    form.append(ENTRY_ANSWER,answer);
+
+    fetch(FORM_URL,{
+        method:"POST",
+        mode:"no-cors",
+        body:form
+    }).catch(()=>{});
+
+}
 /* ============================================================
    GLOBAL HELPERS
    ============================================================ */
@@ -834,11 +868,20 @@ function refreshReveals(){ if(revealObs) $$('.reveal:not(.in)').forEach(el=>reve
 /* ============================================================
    SCENE 4 : STAR COLLECTION GAME → constellation heart
    ============================================================ */
-const STAR_COUNT=7;
+const STAR_COUNT=8;
 // Heart-shaped target points (normalized 0..100 viewBox of #constellation)
-const HEART_POINTS=[
-  {x:50,y:30},{x:38,y:20},{x:26,y:26},{x:24,y:40},
-  {x:38,y:56},{x:50,y:68},{x:62,y:56},{x:76,y:40},
+const HEART_POINTS = [
+    { x:50, y:84 }, // P1 đáy
+
+    { x:26, y:58 }, // P2
+    { x:18, y:34 }, // P3
+    { x:36, y:16 }, // P4
+
+    { x:50, y:28 }, // P5 lõm giữa
+
+    { x:64, y:16 }, // P6
+    { x:82, y:34 }, // P7
+    { x:74, y:58 }  // P8
 ];
 const heartTargets=HEART_POINTS.slice(0,STAR_COUNT);
 let collected=0;
