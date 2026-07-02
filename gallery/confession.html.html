@@ -1,1 +1,27 @@
-buổi chiều dui dẻ
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        .content {
+            display: none; /* Hidden by default */
+        }
+        .content.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <a href="#" onclick="toggleContent(event)">Click to show text</a>
+    
+    <div id="content" class="content">
+        buổi chiều dui dẻ
+    </div>
+
+    <script>
+        function toggleContent(event) {
+            event.preventDefault();
+            document.getElementById('content').classList.toggle('show');
+        }
+    </script>
+</body>
+</html>
